@@ -657,7 +657,12 @@ async def chat(request: ChatRequest):
     """Chat endpoint that communicates with OpenAI GPT-4o"""
     try:
         # Initialize OpenAI client with user's API key
-        client = OpenAI(api_key=request.api_key)
+        # Explicitly set timeout and max_retries to avoid proxy issues in serverless environments
+        client = OpenAI(
+            api_key=request.api_key,
+            timeout=30.0,
+            max_retries=2
+        )
         
         # Create chat completion
         response = client.chat.completions.create(
