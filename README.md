@@ -1,10 +1,11 @@
 # Thanksgiving Recipe FastAPI App 🦃
 
-A beautiful, simple FastAPI application that displays a delicious Thanksgiving turkey recipe. Ready to deploy to Vercel!
+A beautiful, simple FastAPI application that displays a delicious Thanksgiving turkey recipe and includes a chat interface powered by GPT-4o. Ready to deploy to Vercel!
 
 ## Features
 
 - 🍗 Classic Roast Turkey recipe with herb butter
+- 💬 Chat with GPT-4o (bring your own API key)
 - 🎨 Beautiful, responsive UI with warm Thanksgiving colors
 - 📱 Mobile-friendly design
 - 🔌 RESTful API endpoints
@@ -31,6 +32,7 @@ uvicorn main:app --reload
 
 3. Open your browser to:
 - Home page: http://localhost:8000
+- Chat interface: http://localhost:8000/chat
 - Recipe JSON: http://localhost:8000/recipe
 - API docs: http://localhost:8000/docs
 - Health check: http://localhost:8000/health
@@ -38,9 +40,21 @@ uvicorn main:app --reload
 ## API Endpoints
 
 - `GET /` - Beautiful HTML page with the recipe
+- `GET /chat` - Chat interface with GPT-4o
+- `POST /api/chat` - Chat API endpoint (requires OpenAI API key)
 - `GET /recipe` - Get the recipe as JSON
 - `GET /health` - Health check endpoint
 - `GET /docs` - Interactive API documentation (Swagger UI)
+
+## Chat Feature
+
+The app includes a chat interface that allows users to chat with GPT-4o:
+
+1. Navigate to `/chat`
+2. Enter your OpenAI API key (starts with `sk-`)
+3. Start chatting!
+
+**Security Note:** Your API key is sent directly to OpenAI and is never stored on our servers. Each request uses your API key client-side.
 
 ## Deploy to Vercel
 
@@ -103,6 +117,7 @@ To customize the recipe, edit the `recipe` dictionary in `main.py`. You can chan
 
 - **FastAPI** - Modern, fast web framework for building APIs
 - **Uvicorn** - Lightning-fast ASGI server
+- **OpenAI GPT-4o** - State-of-the-art language model for chat
 - **Vercel** - Serverless deployment platform
 
 ## License
