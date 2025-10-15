@@ -28,6 +28,14 @@ venv/
 ENV/
 env/
 
+# Next.js
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/dist/
+frontend/node_modules/
+frontend/.env*.local
+
 # IDE
 .vscode/
 .idea/
