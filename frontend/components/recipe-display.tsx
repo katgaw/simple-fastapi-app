@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Clock, Users, ChefHat, Lightbulb } from "lucide-react"
 import { Skeleton } from "@/components/ui/skeleton"
+import { fetchRecipe } from "@/lib/api"
 
 interface Recipe {
   name: string
@@ -22,8 +23,7 @@ export function RecipeDisplay() {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"}/recipe`)
-      .then((res) => res.json())
+    fetchRecipe()
       .then((data) => {
         setRecipe(data)
         setLoading(false)

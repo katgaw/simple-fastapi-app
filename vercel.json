@@ -1,24 +1,14 @@
 {
-  "rewrites": [
+  "builds": [
     {
-      "source": "/api/:path*",
-      "destination": "https://simple-fastapi-app-api.vercel.app/api/:path*"
-    },
+      "src": "main.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
     {
-      "source": "/recipe",
-      "destination": "https://simple-fastapi-app-api.vercel.app/recipe"
-    },
-    {
-      "source": "/health",
-      "destination": "https://simple-fastapi-app-api.vercel.app/health"
-    },
-    {
-      "source": "/docs",
-      "destination": "https://simple-fastapi-app-api.vercel.app/docs"
-    },
-    {
-      "source": "/openapi.json",
-      "destination": "https://simple-fastapi-app-api.vercel.app/openapi.json"
+      "src": "/(.*)",
+      "dest": "main.py"
     }
   ]
 }

@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Send, Key, Loader2 } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { sendChatMessage } from "@/lib/api"
 
 interface Message {
   role: "user" | "assistant" | "system"
@@ -55,23 +56,7 @@ export function ChatInterface() {
     setError(null)
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"}/api/chat`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          messages: newMessages,
-          api_key: apiKey,
-        }),
-      })
-
-      const data = await response.json()
-
-      if (!response.ok) {
-        throw new Error(data.detail || "Failed to get response")
-      }
-
+      const data = await sendChatMessage(newMessages, apiKey)
       setMessages([...newMessages, { role: "assistant", content: data.message }])
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred")
