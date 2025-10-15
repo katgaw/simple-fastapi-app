@@ -1,130 +1,144 @@
-# Thanksgiving Recipe FastAPI App 🦃
+# Diet Recipe App 🍽️
 
-A beautiful, simple FastAPI application that displays a delicious Thanksgiving turkey recipe and includes a chat interface powered by GPT-4o. Ready to deploy to Vercel!
+A full-stack application that generates personalized dinner recipes using OpenAI's GPT-4. Built with FastAPI (backend) and Next.js (frontend).
 
 ## Features
 
-- 🍗 Classic Roast Turkey recipe with herb butter
-- 💬 Chat with GPT-4o (bring your own API key)
-- 🎨 Beautiful, responsive UI with warm Thanksgiving colors
-- 📱 Mobile-friendly design
-- 🔌 RESTful API endpoints
-- 📚 Auto-generated API documentation
+- 🥗 Generate vegetarian recipes
+- 🌱 Generate vegan recipes
+- 🍽️ Generate recipes with no dietary restrictions
+- 🎨 Beautiful, modern web interface with drawer component (vaul)
+- ⚡ Fast API powered by FastAPI
+- 🤖 AI-powered recipes using GPT-4
+- 📱 Responsive design
 
-## Local Development
+## Tech Stack
 
-### Prerequisites
+### Backend
+- Python 3.13
+- FastAPI 0.115.4
+- OpenAI 1.54.3
+- Uvicorn 0.32.0
 
-- Python 3.8 or higher
-- pip
+### Frontend
+- Next.js 15.1.4
+- React 18.3.1
+- TypeScript
+- Tailwind CSS
+- Vaul 1.1.1 (drawer component)
+- Lucide React (icons)
 
-### Installation
+## Requirements
 
-1. Install dependencies:
+- Python 3.13
+- Node.js 18+ / npm
+- OpenAI API Key
+
+## Setup
+
+### Backend Setup
+
+1. Install Python dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-2. Run the application:
+2. Create a `.env` file in the root directory with your OpenAI API key:
+```
+OPENAI_API_KEY=your_api_key_here
+```
+
+3. Run the backend server:
 ```bash
 uvicorn main:app --reload
 ```
 
-3. Open your browser to:
-- Home page: http://localhost:8000
-- Chat interface: http://localhost:8000/chat
-- Recipe JSON: http://localhost:8000/recipe
-- API docs: http://localhost:8000/docs
-- Health check: http://localhost:8000/health
+The backend will run on `http://localhost:8000`
+
+### Frontend Setup
+
+1. Navigate to the frontend directory:
+```bash
+cd frontend
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. The `.env.local` file is already configured to connect to `http://localhost:8000`
+
+4. Run the development server:
+```bash
+npm run dev
+```
+
+The frontend will run on `http://localhost:3000`
+
+## Running the Full Application
+
+1. **Terminal 1** - Start the backend:
+```bash
+uvicorn main:app --reload
+```
+
+2. **Terminal 2** - Start the frontend:
+```bash
+cd frontend
+npm run dev
+```
+
+3. Open your browser to `http://localhost:3000`
 
 ## API Endpoints
 
-- `GET /` - Beautiful HTML page with the recipe
-- `GET /chat` - Chat interface with GPT-4o
-- `POST /api/chat` - Chat API endpoint (requires OpenAI API key)
-- `GET /recipe` - Get the recipe as JSON
+- `GET /` - API info and health check
+- `POST /recipe` - Generate a recipe (accepts JSON with `diet_type`: "vegetarian", "vegan", or "no_restrictions")
 - `GET /health` - Health check endpoint
-- `GET /docs` - Interactive API documentation (Swagger UI)
 
-## Chat Feature
+## Example API Usage
 
-The app includes a chat interface that allows users to chat with GPT-4o:
-
-1. Navigate to `/chat`
-2. Enter your OpenAI API key (starts with `sk-`)
-3. Start chatting!
-
-**Security Note:** Your API key is sent directly to OpenAI and is never stored on our servers. Each request uses your API key client-side.
-
-## Deploy to Vercel
-
-### Option 1: Deploy with Vercel CLI
-
-1. Install Vercel CLI:
 ```bash
-npm i -g vercel
+curl -X POST "http://localhost:8000/recipe" \
+  -H "Content-Type: application/json" \
+  -d '{"diet_type": "vegan"}'
 ```
 
-2. Deploy:
-```bash
-vercel
+Response format:
+```json
+{
+  "name": "Recipe Name",
+  "description": "Brief description",
+  "prep_time": "30 minutes",
+  "servings": "4 servings",
+  "ingredients": ["ingredient 1", "ingredient 2"],
+  "instructions": ["step 1", "step 2"]
+}
 ```
 
-3. Follow the prompts to complete deployment
+## Python 3.13 Compatibility
 
-### Option 2: Deploy with GitHub
-
-1. Push this repository to GitHub
-2. Go to [Vercel](https://vercel.com)
-3. Click "New Project"
-4. Import your GitHub repository
-5. Vercel will automatically detect the configuration
-6. Click "Deploy"
-
-### Option 3: Deploy via Vercel Dashboard
-
-1. Create a ZIP file of this directory
-2. Go to [Vercel](https://vercel.com)
-3. Drag and drop the ZIP file
-4. Vercel will handle the rest!
+All backend libraries are compatible with Python 3.13:
+- fastapi 0.115.4
+- uvicorn 0.32.0
+- openai 1.54.3
+- python-dotenv 1.0.1
+- pydantic 2.9.2
 
 ## Project Structure
 
 ```
 simple-fastapi-app/
-├── main.py           # FastAPI application
-├── requirements.txt  # Python dependencies
-├── vercel.json      # Vercel deployment configuration
-└── README.md        # This file
+├── main.py              # FastAPI backend
+├── requirements.txt     # Python dependencies
+├── .env                 # Backend environment variables
+├── README.md            # This file
+└── frontend/
+    ├── app/             # Next.js app directory
+    ├── components/      # React components
+    ├── lib/             # Utilities
+    ├── package.json     # Frontend dependencies
+    └── .env.local       # Frontend environment variables
 ```
-
-## Configuration
-
-The `vercel.json` file configures Vercel to:
-- Build the Python application using `@vercel/python`
-- Route all requests to the FastAPI app
-
-## Customization
-
-To customize the recipe, edit the `recipe` dictionary in `main.py`. You can change:
-- Recipe name
-- Ingredients
-- Instructions
-- Cooking times
-- Pro tips
-
-## Technologies Used
-
-- **FastAPI** - Modern, fast web framework for building APIs
-- **Uvicorn** - Lightning-fast ASGI server
-- **OpenAI GPT-4o** - State-of-the-art language model for chat
-- **Vercel** - Serverless deployment platform
-
-## License
-
-MIT License - Feel free to use this for your Thanksgiving celebration!
-
----
-
-Made with ❤️ for Thanksgiving
 

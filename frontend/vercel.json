@@ -1,9 +1,0 @@
-{
-  "framework": "nextjs",
-  "buildCommand": "npm run build",
-  "installCommand": "npm install",
-  "env": {
-    "NEXT_PUBLIC_API_URL": "https://simple-fastapi-k1ksry15b-kats-projects-e3077004.vercel.app"
-  }
-}
-

@@ -1,50 +1,59 @@
-# Thanksgiving Recipe Frontend
+# Diet Recipe App - Frontend
 
-A modern Next.js frontend for the FastAPI Thanksgiving recipe backend.
+Modern Next.js frontend for the Diet Recipe App with a beautiful UI and drawer component.
 
-## Features
+## Tech Stack
 
-- 🦃 Beautiful recipe display with dark theme
-- 💬 AI-powered chat interface using GPT-4o
-- 🎨 Modern UI with Tailwind CSS and shadcn/ui
-- 📱 Fully responsive design
-- ⚡ Fast and optimized for Vercel deployment
+- **Next.js 15.1.4** - React framework
+- **React 18.3.1** - UI library
+- **TypeScript** - Type safety
+- **Tailwind CSS 4** - Styling
+- **Vaul 1.1.1** - Drawer component
+- **Lucide React** - Icons
 
 ## Getting Started
 
 1. Install dependencies:
-\`\`\`bash
+
+```bash
 npm install
-\`\`\`
+```
 
-2. Create a `.env.local` file:
-\`\`\`bash
+2. Make sure the `.env.local` file exists with:
+
+```
 NEXT_PUBLIC_API_URL=http://localhost:8000
-\`\`\`
+```
 
-3. Start the development server:
-\`\`\`bash
+3. Run the development server:
+
+```bash
 npm run dev
-\`\`\`
+```
 
-4. Make sure your FastAPI backend is running on port 8000
+4. Open [http://localhost:3000](http://localhost:3000) with your browser.
 
-## Deployment to Vercel
+## Important Note
 
-1. Push your code to GitHub
-2. Import the project in Vercel
-3. Add the environment variable:
-   - `NEXT_PUBLIC_API_URL`: Your FastAPI backend URL
-4. Deploy!
+Make sure the backend is running on `http://localhost:8000` before using the app. See the main README in the root directory for backend setup instructions.
 
-## Environment Variables
+## Available Scripts
 
-- `NEXT_PUBLIC_API_URL`: The URL of your FastAPI backend (default: http://localhost:8000)
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm start` - Start production server
+- `npm run lint` - Run ESLint
 
-## Tech Stack
+## Components
 
-- Next.js 15
-- React 19
-- Tailwind CSS v4
-- shadcn/ui components
-- TypeScript
+- `DietSelector` - Main component with three diet options
+- `RecipeDrawer` - Vaul drawer component that displays recipes
+- UI components - Button, Card (from shadcn/ui style)
+
+## Features
+
+- 🎨 Beautiful, responsive design
+- 🌊 Smooth drawer animations using Vaul
+- ⚡ Fast loading states
+- 🔄 Generate multiple recipes
+- 📱 Mobile-friendly
